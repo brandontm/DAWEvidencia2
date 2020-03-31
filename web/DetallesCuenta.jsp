@@ -9,31 +9,44 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Detalle de Cuenta</title>
-    </head>
-    <body>
-         <h1>Detalle de cuenta</h1>
-        <table border="1">
-            <tr>
-            <th>Numero de Cuenta</th>
-            <th>Numero de Cliente</th>
-            <th>Tipo de Cuenta</th>
-            <th>Monto</th>
-            </tr>
-            <c:forEach var="cuentaC" items="${sessionScope.Cuenta}">
-        <tr>
-            <td>${cuentaC.getNumCuenta()}</td>
-            <td>${cuentaC.getNumCliente()}</td>
-            <td>${cuentaC.getTipoCuenta()}</td>
-            <td>${cuentaC.getMonto()}</td>
-        </tr>
-        </c:forEach>
-       
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Detalle de Cuenta</title>
+
+    <link rel="stylesheet" type="text/css" href="styles/skeleton.css" />
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css" />
+</head>
+
+<body>
+    <jsp:include page="header.jsp" />
+    <div class="container">
+        <h1>Detalle de cuenta</h1>
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>Numero de Cuenta</th>
+                    <th>Numero de Cliente</th>
+                    <th>Tipo de Cuenta</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <c:forEach var="cuentaC" items="${sessionScope.Cuenta}">
+                    <tr>
+                        <td>${cuentaC.getNumCuenta()}</td>
+                        <td>${cuentaC.getNumCliente()}</td>
+                        <td>${cuentaC.getTipoCuenta()}</td>
+                        <td>${cuentaC.getMonto()}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
-          <form action="ReCuenta_serlvet.do" method="get" onsubmit="return validar()">
+        <form action="ReCuenta_serlvet.do" method="get" onsubmit="return validar()">
             <input type="submit" value="Actualizar">
         </form>
-    </body>
+    </div>
+</body>
+
 </html>
