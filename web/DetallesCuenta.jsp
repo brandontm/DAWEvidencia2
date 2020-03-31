@@ -46,9 +46,11 @@
                 </c:forEach>
             </tbody>
         </table>
-        <form action="ReCuenta_serlvet.do" method="get" onsubmit="return validar()">
-            <input type="submit" value="Actualizar">
-        </form>
+        <c:if test="${sessionScope.usuario.isAdministrador()}">
+            <form action="ReCuenta_serlvet.do" method="get" onsubmit="return validar()">
+                <input type="submit" value="Actualizar">
+            </form>
+        </c:if>
     </div>
 </body>
 

@@ -2,22 +2,22 @@ package Controladores;
 
 import Modelos.Cliente;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author DAVID
  */
-public class Registro_servlet extends HttpServlet {
+public class Registro_servlet extends HttpServlet implements ServletContextListener {
     
-    ArrayList clientes = new ArrayList();
-
+    ArrayList<Cliente> clientes = new ArrayList();
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -29,8 +29,7 @@ public class Registro_servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        clientes.clear();
-        request.getRequestDispatcher("Registro.jsp").forward(request, response);
+        
     }
 
     /**
@@ -44,7 +43,6 @@ public class Registro_servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
@@ -59,6 +57,7 @@ public class Registro_servlet extends HttpServlet {
         String nombreusuario = request.getParameter("usuario");
         String numerocliente = request.getParameter("numcliente");
         String contrasena = request.getParameter("contrasena");
+        String tipoCliente = request.getParameter("tipoCliente");
         
         
         Cliente c1 = new Cliente();
@@ -75,6 +74,7 @@ public class Registro_servlet extends HttpServlet {
         c1.setNombreUsuario(nombreusuario);
         c1.setNumeroCliente(numerocliente);
         c1.setContrasena(contrasena);
+        c1.setAdministrador((tipoCliente.equals("administrador")));
         
         clientes.add(c1);
         
@@ -83,16 +83,16 @@ public class Registro_servlet extends HttpServlet {
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
     
-    
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
-    public String getServletInfo() {
-        return "Short description";
+    public void contextInitialized(ServletContextEvent event) {
+        Cliente admin = new Cliente();
+        admin.setNumeroCliente("1");
+        admin.setNombreUsuario("admin");
+        admin.setContrasena("123456");
+        admin.setAdministrador(true);
+        clientes.add(admin);
+        event.getServletContext().setAttribute("listaclientes", clientes);
+        admin.setCiudad("asd");
     }
 
 }

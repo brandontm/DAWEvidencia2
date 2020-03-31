@@ -19,6 +19,7 @@ public class Cliente {
     private String nombreUsuario;
     private String numeroCliente;
     private String contrasena;
+    private boolean administrador;
 
     public Cliente() {
     }
@@ -129,6 +130,12 @@ public class Cliente {
         this.contrasena = contrasena;
     }
     
-    
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
 
 }

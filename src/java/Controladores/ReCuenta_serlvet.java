@@ -29,10 +29,7 @@ public class ReCuenta_serlvet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Object clone = cuentas.clone();
-        cuentas.clear();
-        request.getRequestDispatcher("RegistroCuenta.jsp").forward(request, response);
-   
+        
     }
 
     /**
