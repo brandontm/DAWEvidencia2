@@ -18,6 +18,7 @@
     </head>
 
     <body>
+        <jsp:include page="header.jsp" />
         <div class="container">
             <h1>Detalle del cliente</h1>
             <table class="u-full-width">

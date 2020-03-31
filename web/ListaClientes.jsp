@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="styles/normalize.css"/>
     </head>
     <body>
+        <jsp:include page="header.jsp" />
         <div class="container">
             <h1>Lista de Clientes</h1>
             <table class="u-full-width">

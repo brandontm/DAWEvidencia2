@@ -16,6 +16,7 @@
         <script src="Scripts/validacionRegistro.js"></script>
     </head>
     <body>
+        <jsp:include page="header.jsp" />
         <div class="container">
             <center>
                 <h1>Alta de Cliente</h1>

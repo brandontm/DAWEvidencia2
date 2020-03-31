@@ -18,26 +18,27 @@
         <link rel="stylesheet" type="text/css" href="styles/normalize.css"/>
     </head>
     <body>
-    <div class="container">
-        <h1>Iniciar Sesion</h1>
-        <form action="iniciarSesion.do" method="post">
-            <div class="row">
-                <div class="six columns">
-                    <label for="user">Usuario</label>
-                    <input class="u-full-width" type="text" name="user" id="user" placeholder="Usuario" required="true">
+        <jsp:include page="header.jsp" />
+        <div class="container">
+            <h1>Iniciar Sesion</h1>
+            <form action="iniciarSesion.do" method="post">
+                <div class="row">
+                    <div class="six columns">
+                        <label for="user">Usuario</label>
+                        <input class="u-full-width" type="text" name="user" id="user" placeholder="Usuario" required="true">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="six columns">
-                    <label for="password">Contrase&ntilde;a</label>
-                    <input class="u-full-width" type="password" name="pass" id="password" placeholder="Contrase&ntilde;a" required="true">
+                <div class="row">
+                    <div class="six columns">
+                        <label for="password">Contrase&ntilde;a</label>
+                        <input class="u-full-width" type="password" name="pass" id="password" placeholder="Contrase&ntilde;a" required="true">
+                    </div>
                 </div>
-            </div>
-            
-            <br>
-            <input type="submit" value="Iniciar Sesion" class="button-primary">
 
-        </form>
-    </div>
-</body>
+                <br>
+                <input type="submit" value="Iniciar Sesion" class="button-primary">
+
+            </form>
+        </div>
+    </body>
 </html>
