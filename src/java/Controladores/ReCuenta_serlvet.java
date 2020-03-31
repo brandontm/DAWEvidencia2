@@ -25,12 +25,12 @@ public class ReCuenta_serlvet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     ArrayList cuenta = new ArrayList();
+     ArrayList cuentas = new ArrayList();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Object clone = cuenta.clone();
-        cuenta.clear();
+        Object clone = cuentas.clone();
+        cuentas.clear();
         request.getRequestDispatcher("RegistroCuenta.jsp").forward(request, response);
    
     }
@@ -64,11 +64,11 @@ public class ReCuenta_serlvet extends HttpServlet {
         d1.setMonto(Monto);
         
         
-        cuenta.add(d1);
-          //ServletContext sc = getServletContext();
-        session.setAttribute("Cuenta", cuenta);
-      //  sc.setAttribute("Cuentaclientes", cuenta);
-       request.getRequestDispatcher("index.jsp").forward(request, response);
+        cuentas.add(d1);
+
+        getServletContext().setAttribute("listacuentas", cuentas);
+        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     /**

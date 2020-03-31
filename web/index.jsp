@@ -21,11 +21,11 @@
     <div class="container">
         <h1>Bienvenido al Banco Mercantil de M&eacute;xico</h1>
         <a class="button button-primary" href="Registro.jsp">Alta de cliente</a><br>
-        <a class="button button-primary" href="InicioSesion.jsp">Iniciar Sesión</a><br>
+        <a class="button button-primary" href="InicioSesion.jsp">Iniciar Sesi&oacute;n</a><br>
         <a class="button button-primary" href="ListaClientes.jsp">Lista de Clientes</a><br>
-        <a class="button button-primary" href="DetalleCliente.jsp">Detalles de Clientes</a><br>
+        <a class="button button-primary" href="DetalleCliente.jsp">Detalle de Clientes</a><br>
         <a class="button button-primary" href="RegistroCuenta.jsp">Registro de cuenta</a><br>
-        <a class="button button-primary" href="DetallesCuenta.jsp">Detalles del cuenta</a>
+        <a class="button button-primary" href="DetallesCuenta.jsp">Detalle de cuenta</a>
     </div>
 </body>
 

@@ -54,7 +54,7 @@ public class iniciarSesion_Servlet extends HttpServlet {
         try {
             for (Cliente c : clientes) {
                 if (c.getNombreUsuario().equals(usuario) && c.getContrasena().equals(contrasena)) {
-                    session.setAttribute("usuario", usuario);
+                    session.setAttribute("usuario", c);
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 } else {
                     out.println("<center>");
