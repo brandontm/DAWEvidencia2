@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -23,13 +24,17 @@
 
         <form action="Transferencia.do" method="POST">
             <label for="numCuentaOrigen">N&uacute;mero de cuenta propia</label>
-            <input type="text" name="numCuentaOrigen" required="true">
+            <select id="numCuentaOrigen" name="numCuentaOrigen" required="true">
+                <c:forEach var="cuenta" items="${listacuentas}">
+                    <option value="${cuenta.getNumCuenta()}">${cuenta.getNumCuenta()}</option>
+                </c:forEach>
+            </select>
 
             <label for="numCuentaDestino">N&uacute;mero de cuenta a depositar</label>
-            <input type="text" name="numCuentaDestino" required="true">
+            <input id="numCuentaDestino" type="text" name="numCuentaDestino" required="true">
 
             <label for="cantidad">Cantidad</label>
-            <input type="number" name="cantidad" min="0" required="true"><br><br>
+            <input id="cantidad" type="number" name="cantidad" min="0" required="true"><br><br>
 
             <input class="button-primary" type="submit" value="Transferir">
         </form>

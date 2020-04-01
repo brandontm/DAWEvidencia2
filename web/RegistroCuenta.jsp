@@ -33,10 +33,10 @@
             <input type="text" placeholder="Tipo de cuenta" name="TipoCuenta"> -->
 
             <label for="tipoCuenta"><b>Tipo de Cuenta</b></label>
-            
+
             <c:set var="tiposCuenta" value="<%= CuentaCliente.Tipo.values() %>" />
-            
-            <select id="tipoCuenta" name="tipoCuenta">
+
+            <select id="tipoCuenta" name="tipoCuenta" required="true">
                 <c:forEach var="tipoCuenta" items="${tiposCuenta}">
                     <option value="${tipoCuenta}">${tipoCuenta.getValor()}</option>
                 </c:forEach>

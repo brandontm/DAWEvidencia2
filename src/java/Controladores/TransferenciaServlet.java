@@ -58,7 +58,7 @@ public class TransferenciaServlet extends HttpServlet {
         String numCuentaDestino = request.getParameter("numCuentaDestino");
         double cantidad = Double.valueOf(request.getParameter("cantidad"));
 
-        if (numCuentaOrigen == numCuentaDestino) {
+        if (numCuentaOrigen.equals(numCuentaDestino)) {
             out.println("<center>");
             out.print("<p>No puedes transferir a la misma cuenta</p>");
             out.println("</center>");
@@ -92,6 +92,7 @@ public class TransferenciaServlet extends HttpServlet {
                 out.println("</center>");
 
                 request.getRequestDispatcher("transferencia.jsp").include(request, response);
+                return;
             }
 
             cuentaOrigen.addToMonto(cantidad * -1.0);
