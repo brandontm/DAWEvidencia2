@@ -17,49 +17,48 @@ public class ReCuenta_serlvet extends HttpServlet {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
-     ArrayList cuentas = new ArrayList();
+    ArrayList cuentas = new ArrayList();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
-   
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String NumCuenta = request.getParameter("NumCuenta");
         String NumCliente = request.getParameter("NumCliente");
-        String TipoCuenta = request.getParameter("TipoCuenta");
+        CuentaCliente.Tipo TipoCuenta = request.getParameter("TipoCuenta");
         double Monto = Double.valueOf(request.getParameter("monto"));
-        
-        
+
         CuentaCliente d1 = new CuentaCliente();
-      
+
         d1.setNumCuenta(NumCuenta);
         d1.setNumCliente(NumCliente);
         d1.setTipoCuenta(TipoCuenta);
         d1.setMonto(Monto);
-        
-        
+
         cuentas.add(d1);
 
         getServletContext().setAttribute("listacuentas", cuentas);
-        
+
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

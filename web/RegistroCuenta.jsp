@@ -4,7 +4,9 @@
     Author     : huert
 --%>
 
+<%@page import="Modelos.CuentaCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -27,11 +29,21 @@
             <label for="NumCustomer"><b>N&uacute;mero de Cliente</b></label>
             <input type="text" placeholder="N&uacute;mero de cliente" name="NumCliente" required="true">
             <br>
+            <!-- <label for="tipoCuenta"><b>Tipo de Cuenta</b></label>
+            <input type="text" placeholder="Tipo de cuenta" name="TipoCuenta"> -->
+
             <label for="tipoCuenta"><b>Tipo de Cuenta</b></label>
-            <input type="text" placeholder="Tipo de cuenta" name="TipoCuenta">
+            
+            <c:set var="tiposCuenta" value="<%= CuentaCliente.Tipo.values() %>" />
+            
+            <select id="tipoCuenta" name="tipoCuenta">
+                <c:forEach var="tipoCuenta" items="${tiposCuenta}">
+                    <option value="${tipoCuenta}">${tipoCuenta.getValor()}</option>
+                </c:forEach>
+            </select>
             <br>
-            <label for="Monto"><b>Monto</b></label>
-            <input type="number" placeholder="Monto" name="monto" min="0"><br><br>
+            <label for="monto"><b>Monto</b></label>
+            <input id="monto" type="number" placeholder="Monto" name="monto" min="0"><br><br>
 
             <input class="button-primary" type="submit" value="Guardar">
         </form>
