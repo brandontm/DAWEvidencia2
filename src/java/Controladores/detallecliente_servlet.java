@@ -10,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -54,8 +53,10 @@ public class detallecliente_servlet extends HttpServlet {
 
         Cliente c1 = new Cliente();
 
+        boolean seEncontroCliente = false;
         for (Cliente c : clientes) {
             if (c.getNumeroCliente().equals(numerocliente)) {
+
                 c1.setNombre(c.getNombre());
                 c1.setApellido(c.getApellido());
                 c1.setDireccion(c.getDireccion());
@@ -72,14 +73,17 @@ public class detallecliente_servlet extends HttpServlet {
                 listaclientes.add(c1);
                 request.setAttribute("clientesolicitado", listaclientes);
                 request.getRequestDispatcher("Registro.jsp").forward(request, response);
-                break;
-            } else {
-                out.println("<center>");
-                out.print("<p>Error en los campos, verifique su informacion</p>");
-                out.println("</center>");
-                request.getRequestDispatcher("DetalleCliente.jsp").include(request, response);
+
+                seEncontroCliente = true;
                 break;
             }
+        }
+
+        if (!seEncontroCliente) {
+            out.println("<center>");
+            out.print("<p>Error en los campos, verifique su informacion</p>");
+            out.println("</center>");
+            request.getRequestDispatcher("DetalleCliente.jsp").include(request, response);
         }
     }
 
