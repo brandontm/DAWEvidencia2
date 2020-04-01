@@ -1,5 +1,7 @@
 package Modelos;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Brandon
@@ -8,11 +10,13 @@ public class Transferencia {
     private String numeroCuentaOrigen;
     private String numeroCuentaDestino;
     private double cantidad;
-    
-    public Transferencia(String origen, String destino, double cantidad) {
+    private LocalDate fecha;
+
+    public Transferencia(String origen, String destino, double cantidad, LocalDate fecha) {
         this.numeroCuentaOrigen = origen;
         this.numeroCuentaDestino = destino;
         this.cantidad = cantidad;
+        this.fecha = fecha;
     }
 
     /**
@@ -55,5 +59,19 @@ public class Transferencia {
      */
     public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
+    }
+
+    /**
+     * @return the fecha
+     */
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 }

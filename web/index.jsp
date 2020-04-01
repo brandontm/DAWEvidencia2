@@ -30,10 +30,16 @@
                 <a class="button button-primary" href="DetalleCliente.jsp">Detalle de Clientes</a><br>
                 <a class="button button-primary" href="ListaClientes.jsp">Lista de Clientes</a><br>
                 <a class="button button-primary" href="RegistroCuenta.jsp">Registro de cuenta</a><br>
-                <a class="button button-primary" href="DetallesCuenta.jsp">Detalle de cuenta</a>
+                <a class="button button-primary" href="DetallesCuenta.jsp">Detalle de cuenta</a><br>
+                
+                <%-- TODO: Borrar --%>
+                <a class="button button-primary" href="transferencia.jsp">Realizar transferencia</a><br>
+                <a class="button button-primary" href="transferencias.jsp">Lista de transferencias</a><br>
             </c:when>
             <c:otherwise>
-                <a class="button button-primary" href="DetallesCuenta.jsp">Detalle de cuenta</a>
+                <a class="button button-primary" href="DetallesCuenta.jsp">Detalle de cuenta</a><br>
+                <a class="button button-primary" href="transferencia.jsp">Realizar transferencia</a><br>
+                <a class="button button-primary" href="transferencias.jsp">Lista de transferencias</a><br>
             </c:otherwise>
         </c:choose>
     </div>
