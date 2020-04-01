@@ -45,7 +45,10 @@ public class ReCuenta_serlvet extends HttpServlet {
 
         String NumCuenta = request.getParameter("NumCuenta");
         String NumCliente = request.getParameter("NumCliente");
-        CuentaCliente.Tipo TipoCuenta = request.getParameter("TipoCuenta");
+        CuentaCliente.Tipo TipoCuenta =
+                (request.getParameter("tipoCuenta").equalsIgnoreCase("debito")
+                ? CuentaCliente.Tipo.DEBITO
+                : CuentaCliente.Tipo.RETIRO);
         double Monto = Double.valueOf(request.getParameter("monto"));
 
         CuentaCliente d1 = new CuentaCliente();

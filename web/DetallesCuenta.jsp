@@ -40,7 +40,7 @@
                     <tr>
                         <td>${cuentaC.getNumCuenta()}</td>
                         <td>${cuentaC.getNumCliente()}</td>
-                        <td>${cuentaC.getTipoCuenta()}</td>
+                        <td>${cuentaC.getTipoCuenta().getValor()}</td>
                         <td>${cuentaC.getMonto()}</td>
                     </tr>
                 </c:forEach>

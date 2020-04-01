@@ -8,6 +8,7 @@ package Controladores;
 import Modelos.CuentaCliente;
 import Modelos.Transferencia;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,32 +52,65 @@ public class TransferenciaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        PrintWriter out = response.getWriter();
+
         String numCuentaOrigen = request.getParameter("numCuentaOrigen");
         String numCuentaDestino = request.getParameter("numCuentaDestino");
         double cantidad = Double.valueOf(request.getParameter("cantidad"));
 
+        if (numCuentaOrigen == numCuentaDestino) {
+            out.println("<center>");
+            out.print("<p>No puedes transferir a la misma cuenta</p>");
+            out.println("</center>");
+            request.getRequestDispatcher("transferencia.jsp").include(request, response);
+            return;
+        }
+
         List<CuentaCliente> cuentas = (List<CuentaCliente>) getServletContext().getAttribute("listacuentas");
 
-        if (cuentas != null) {
-            OptionalInt indexCuentaOrigen = IntStream.range(0, cuentas.size())
-                    .filter(i -> cuentas.get(i).getNumCuenta().equals(numCuentaOrigen)).findAny();
+        if (cuentas == null) {
+            out.println("<center>");
+            out.print("<p>No se encontro alguna de las cuentas ingresadas</p>");
+            out.println("</center>");
+            request.getRequestDispatcher("transferencia.jsp").include(request, response);
+            return;
+        }
 
-            OptionalInt indexCuentaDestino = IntStream.range(0, cuentas.size())
-                    .filter(i -> cuentas.get(i).getNumCuenta().equals(numCuentaDestino)).findAny();
+        OptionalInt indexCuentaOrigen = IntStream.range(0, cuentas.size())
+                .filter(i -> cuentas.get(i).getNumCuenta().equals(numCuentaOrigen)).findAny();
 
-            if (indexCuentaOrigen.isPresent() && indexCuentaDestino.isPresent()) {
-                CuentaCliente cuentaOrigen = cuentas.get(indexCuentaOrigen.getAsInt());
-                CuentaCliente cuentaDestino = cuentas.get(indexCuentaDestino.getAsInt());
+        OptionalInt indexCuentaDestino = IntStream.range(0, cuentas.size())
+                .filter(i -> cuentas.get(i).getNumCuenta().equals(numCuentaDestino)).findAny();
 
-                cuentaOrigen.addToMonto(cantidad * -1.0);
-                cuentaDestino.addToMonto(cantidad);
+        if (indexCuentaOrigen.isPresent() && indexCuentaDestino.isPresent()) {
+            CuentaCliente cuentaOrigen = cuentas.get(indexCuentaOrigen.getAsInt());
+            CuentaCliente cuentaDestino = cuentas.get(indexCuentaDestino.getAsInt());
 
-                Transferencia transferencia = new Transferencia(numCuentaOrigen, numCuentaDestino, cantidad,
-                        LocalDate.now());
-                transferencias.add(transferencia);
+            if (cuentaOrigen.getMonto() < cantidad) {
+                out.println("<center>");
+                out.print("<p>No cuentas con fondos suficientes</p>");
+                out.println("</center>");
 
-                getServletContext().setAttribute("transferencias", transferencias);
+                request.getRequestDispatcher("transferencia.jsp").include(request, response);
             }
+
+            cuentaOrigen.addToMonto(cantidad * -1.0);
+            cuentaDestino.addToMonto(cantidad);
+
+            Transferencia transferencia = new Transferencia(numCuentaOrigen, numCuentaDestino, cantidad,
+                    LocalDate.now());
+            transferencias.add(transferencia);
+
+            getServletContext().setAttribute("transferencias", transferencias);
+
+            request.getRequestDispatcher("").include(request, response);
+        } else {
+            out.println("<center>");
+            out.print("<p>No se encontro alguna de las cuentas ingresadas</p>");
+            out.println("</center>");
+
+            request.getRequestDispatcher("transferencia.jsp").include(request, response);
+            return;
         }
     }
 
