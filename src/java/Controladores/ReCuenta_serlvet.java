@@ -3,6 +3,7 @@ package Controladores;
 import Modelos.CuentaCliente;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,16 @@ public class ReCuenta_serlvet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException      if an I/O error occurs
      */
-    ArrayList cuentas = new ArrayList();
+    List<CuentaCliente> cuentas = new ArrayList();
+
+    @Override
+    public void init() throws ServletException {
+        List<CuentaCliente> cuentasActuales = (List<CuentaCliente>) getServletContext().getAttribute("listacuentas");
+
+        if (cuentasActuales != null) {
+            this.cuentas = cuentasActuales;
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,8 +55,7 @@ public class ReCuenta_serlvet extends HttpServlet {
 
         String NumCuenta = request.getParameter("NumCuenta");
         String NumCliente = request.getParameter("NumCliente");
-        CuentaCliente.Tipo TipoCuenta =
-                (request.getParameter("tipoCuenta").equalsIgnoreCase("debito")
+        CuentaCliente.Tipo TipoCuenta = (request.getParameter("tipoCuenta").equalsIgnoreCase("debito")
                 ? CuentaCliente.Tipo.DEBITO
                 : CuentaCliente.Tipo.RETIRO);
         double Monto = Double.valueOf(request.getParameter("monto"));

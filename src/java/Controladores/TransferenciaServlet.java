@@ -24,7 +24,17 @@ import javax.servlet.http.HttpServletResponse;
  * @author Brandon
  */
 public class TransferenciaServlet extends HttpServlet {
-    private final List<Transferencia> transferencias = new ArrayList<>();
+    private List<Transferencia> transferencias = new ArrayList<>();
+
+    @Override
+    public void init() throws ServletException {
+        List<Transferencia> transferenciasActuales = (List<Transferencia>) getServletContext()
+                .getAttribute("transferencias");
+
+        if (transferenciasActuales != null) {
+            this.transferencias = transferenciasActuales;
+        }
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
