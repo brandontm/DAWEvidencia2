@@ -21,8 +21,6 @@
 <body>
     <jsp:include page="header.jsp" />
 
-    <c:set var="cuentas"
-        value="${listacuentas.stream().filter(c -> c.getNumCliente() == sessionScope.usuario.getNumeroCliente()).toList()}" />
     <div class="container">
         <h1>Detalle de cuenta</h1>
         <table class="u-full-width">
@@ -36,7 +34,7 @@
             </thead>
 
             <tbody>
-                <c:forEach var="cuentaC" items="${cuentas}">
+                <c:forEach var="cuentaC" items="${listacuentas}">
                     <tr>
                         <td>${cuentaC.getNumCuenta()}</td>
                         <td>${cuentaC.getNumCliente()}</td>
