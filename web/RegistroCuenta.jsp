@@ -31,7 +31,7 @@
             <input type="text" placeholder="Tipo de cuenta" name="TipoCuenta">
             <br>
             <label for="Monto"><b>Monto</b></label>
-            <input type="text" placeholder="Monto" name="monto"><br><br>
+            <input type="number" placeholder="Monto" name="monto" min="0"><br><br>
 
             <input class="button-primary" type="submit" value="Guardar">
         </form>

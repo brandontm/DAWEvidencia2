@@ -9,7 +9,7 @@ public class CuentaCliente {
     public String NumCuenta;
     public String NumCliente;    
     public String TipoCuenta;
-    public String Monto;
+    public double Monto;
  
     public CuentaCliente() {
       
@@ -36,11 +36,11 @@ public class CuentaCliente {
     public void setTipoCuenta(String TipoCuenta) {
         this.TipoCuenta = TipoCuenta;
     }
-     public String getMonto() {
+     public double getMonto() {
         return Monto;
     }
 
-    public void setMonto(String Monto) {
+    public void setMonto(double Monto) {
         this.Monto= Monto;
     }
 }
