@@ -25,7 +25,8 @@
         <form action="Transferencia.do" method="POST">
             <label for="numCuentaOrigen">N&uacute;mero de cuenta propia</label>
             <select id="numCuentaOrigen" name="numCuentaOrigen" required="true">
-                <c:forEach var="cuenta" items="${listacuentas}">
+                <c:forEach var="cuenta"
+                    items="${listacuentas.stream().filter(c -> c.getNumCliente() == sessionScope.usuario.getNumeroCliente()).toList()}">
                     <option value="${cuenta.getNumCuenta()}">${cuenta.getNumCuenta()}</option>
                 </c:forEach>
             </select>

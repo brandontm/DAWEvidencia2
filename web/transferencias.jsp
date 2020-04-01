@@ -34,13 +34,15 @@
             </thead>
 
             <tbody>
-                <c:forEach var="transferencia" items="${transferencias}">
+                <c:forEach var="transferencia"
+                    items="${transferencias.stream().filter(t -> t.getNumeroCliente() == sessionScope.usuario.getNumeroCliente()).toList()}">
                     <tr>
                         <td>${transferencia.getNumeroCuentaOrigen()}</td>
                         <td>${transferencia.getNumeroCuentaDestino()}</td>
                         <td>${transferencia.getCantidad()}</td>
-                        
-                        <fmt:parseDate value="${transferencia.getFecha()}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
+
+                        <fmt:parseDate value="${transferencia.getFecha()}" pattern="yyyy-MM-dd" var="parsedDate"
+                            type="date" />
                         <fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="dd/MM/yyyy" />
                         <td>${newParsedDate}</td>
                     </tr>
