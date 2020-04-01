@@ -4,6 +4,7 @@ import Modelos.Cliente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,29 +18,29 @@ import javax.servlet.http.HttpSession;
  */
 public class detallecliente_servlet extends HttpServlet {
 
-    ArrayList listaclientes = new ArrayList();
+    List listaclientes = new ArrayList();
 
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +50,7 @@ public class detallecliente_servlet extends HttpServlet {
 
         ServletContext sc = getServletContext();
 
-        ArrayList<Cliente> clientes = (ArrayList<Cliente>) sc.getAttribute("listaclientes");
+        List<Cliente> clientes = (ArrayList<Cliente>) sc.getAttribute("listaclientes");
 
         Cliente c1 = new Cliente();
 

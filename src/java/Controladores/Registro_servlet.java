@@ -3,6 +3,7 @@ package Controladores;
 import Modelos.Cliente;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
@@ -16,7 +17,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Registro_servlet extends HttpServlet implements ServletContextListener {
 
-    ArrayList<Cliente> clientes = new ArrayList();
+    List<Cliente> clientes = new ArrayList();
+    
+    @Override
+    public void init() throws ServletException {
+        List<Cliente> clientesActuales =
+                (List<Cliente>)getServletContext().getAttribute("listaclientes");
+        
+        if(clientesActuales != null) {
+            clientes = clientesActuales;
+        }
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -92,7 +103,6 @@ public class Registro_servlet extends HttpServlet implements ServletContextListe
         admin.setAdministrador(true);
         clientes.add(admin);
         event.getServletContext().setAttribute("listaclientes", clientes);
-        admin.setCiudad("asd");
     }
 
 }
