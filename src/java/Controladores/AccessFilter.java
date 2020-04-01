@@ -1,9 +1,6 @@
 package Controladores;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -41,13 +38,14 @@ public class AccessFilter implements Filter {
 		HttpSession session = req.getSession(false);
 		
 		if((session == null || session.getAttribute("usuario") == null)
-                        && !uri.endsWith("iniciarSesion.do") &&
-                        !uri.endsWith("InicioSesion.jsp")) {
+                        && (uri.endsWith(".jsp") || uri.endsWith(".do"))
+                        && !uri.endsWith("iniciarSesion.do")
+                        && !uri.endsWith("InicioSesion.jsp")) {
                     
                     res.sendRedirect("InicioSesion.jsp");
-		}else{
-			// pass the request along the filter chain
-			chain.doFilter(request, response);
+		} else {
+                    // pass the request along the filter chain
+                    chain.doFilter(request, response);
 		}
     }
     /**
@@ -59,6 +57,7 @@ public class AccessFilter implements Filter {
 
     /**
      * Init method for this filter
+     * @param filterConfig
      */
     @Override
     public void init(FilterConfig filterConfig) {        

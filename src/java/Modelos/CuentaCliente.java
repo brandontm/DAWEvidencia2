@@ -43,4 +43,8 @@ public class CuentaCliente {
     public void setMonto(double Monto) {
         this.Monto= Monto;
     }
+    
+    public void addToMonto(double valor) {
+        this.Monto = this.Monto + valor;
+    }
 }
